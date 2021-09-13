@@ -1,4 +1,5 @@
 import DOMPurify from "dompurify"
+import User from "../../models/User"
 
 export default class Chat {
   constructor() {
@@ -22,6 +23,7 @@ export default class Chat {
     //we want the this keyword to point to the object, not the element that got clicked on so we use arrow functions for the event function
     this.openIcon.addEventListener( "click", () => this.showChat())
     this.closeIcon.addEventListener("click", () => this.hideChat())
+    if(user.avatar) console.log('user.avatar')
   }
 
   // Methods
@@ -35,7 +37,7 @@ export default class Chat {
         ${this.chatField.value}
       </div>
     </div>
-    <img class="chat-avatar avatar-tiny" src="${this.avatar}">
+    <img class="chat-avatar avatar-tiny" src="${this.avatar ? this.avatar : 'https://www.clipartkey.com/mpngs/m/152-1520367_user-profile-default-image-png-clipart-png-download.png'}">
     </div>
     `))
     this.chatLog.scrollTop = this.chatLog.scrollHeight
@@ -70,7 +72,7 @@ export default class Chat {
   displayMessageFromServer(data) {
     this.chatLog.insertAdjacentHTML('beforeend', DOMPurify.sanitize(`
     <div class="chat-other">
-    <a href="/profile/${data.username}"><img class="avatar-tiny" src="${data.avatar}"></a>
+    <a href="/profile/${data.username}"><img class="avatar-tiny" src="${data.avatar ? data.avatar : 'https://www.clipartkey.com/mpngs/m/152-1520367_user-profile-default-image-png-clipart-png-download.png'}"></a>
     <div class="chat-message"><div class="chat-message-inner">
       <a href="/profile/${data.username}"><strong>${data.username}:</strong></a>
       ${data.message}
