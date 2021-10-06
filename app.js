@@ -54,7 +54,7 @@ app.use(function(req, res, next){   //we are telling express to run this functio
 const router = require('./router')
 
 
-//adds a middle wear for serving static files to your express app
+//adds a middleware for serving static files to your express app
 app.use(express.static('public'))
 
 //this is the express views configuration option to organize and access html files

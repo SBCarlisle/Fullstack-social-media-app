@@ -1,4 +1,5 @@
-<h2><img class="avatar-small" src="<%= profileAvatar %>"> <%= profileUsername%> 
+<h2><img class="avatar-small" src="<%= profileAvatar ? profileAvatar : '/assets/default_profile_sm.jpg'%>">
+  <%= profileUsername%>
   <%= console.log('isVisitorsProfile' + isVisitorsProfile)%>
  <% if (user && !isVisitorsProfile){
    if (isFollowing){ %>
